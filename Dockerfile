@@ -8,8 +8,8 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends build-essential curl unzip zlib1g-dev libpcre2-dev perl ca-certificates
 
 RUN ARCH=$(dpkg --print-architecture) \
- && if [ "$ARCH" = "amd64" ]; then CLOUDFLARED_ARCH="amd64_linux"; \
-    elif [ "$ARCH" = "arm64" ]; then CLOUDFLARED_ARCH="arm64_linux"; \
+ && if [ "$ARCH" = "amd64" ]; then CLOUDFLARED_ARCH="amd64"; \
+    elif [ "$ARCH" = "arm64" ]; then CLOUDFLARED_ARCH="arm64"; \
     else echo "Unsupported architecture: $ARCH" && exit 1; fi \
  && curl -L -o /tmp/cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-${CLOUDFLARED_ARCH} \
  && chmod +x /tmp/cloudflared \
